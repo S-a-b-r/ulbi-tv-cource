@@ -1,0 +1,25 @@
+<template>
+    <div class="post" v-for="post in posts" :key="post.id">
+        <div><strong>Название:</strong> {{ post.title }}</div>
+        <div><strong>Описание:</strong> {{ post.description }}</div>
+    </div>
+</template>
+
+<script>
+    export default {
+        props: {
+            posts: {
+                type: Array,
+                required: true,
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    .post {
+        margin-top: 10px;
+        padding: 15px;
+        border: 2px solid teal;
+    }
+</style>

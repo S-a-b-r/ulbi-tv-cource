@@ -1,27 +1,31 @@
 <template>
-    <div class="post">
-        <div>Количество лайков: <strong>{{ likes }}</strong></div>
-        <div>Количество дизлайков: <strong>{{ dislikes }}</strong></div>
-        <button @click=addLike>Like</button> //v-on:click - альтернатива
-        <button @click=addDislike>Dislike</button>
+    <div class="mainContainer">
+        <PostForm @createPost="addPost"/>
+        <PostList :posts="posts"/>
     </div>
 </template>
 
 <script>
+import PostForm from "@/components/PostForm.vue";
+import PostList from "@/components/PostList.vue";
+
 export default {
+    components: {
+        PostForm, PostList
+    },
     data() {
         return {
-            likes: 0,
-            dislikes: 0,
+            posts: [
+                {id:1, title:"Пост 1", description:""},
+                {id:2, title:"Пост 2", description:""},
+                {id:3, title:"Пост 3", description:""},
+            ],
         }
     },
     methods: {
-        addLike(){
-            this.likes++;
+        addPost(post) {
+            this.posts.push(post);
         },
-        addDislike(){
-            this.dislikes++;
-        }
     }
 }
 </script>
@@ -33,9 +37,14 @@ export default {
     box-sizing: border-box;
 }
 
-.post {
-    margin-top: 10px;
-    padding: 15px;
-    border: 2px solid teal;
+.mainContainer{
+    width: 90%;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.mainContainer button {
+    padding: 10px;
+    background-color: white;
 }
 </style>
