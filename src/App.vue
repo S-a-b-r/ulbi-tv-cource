@@ -16,9 +16,9 @@ export default {
     data() {
         return {
             posts: [
-                {id:1, title:"Пост 1", description:""},
-                {id:2, title:"Пост 2", description:""},
-                {id:3, title:"Пост 3", description:""},
+                {id:1, title:"Пост 1", description:"Hello world"},
+                {id:2, title:"Пост 2", description:"Manera krutit mir"},
+                {id:3, title:"Пост 3", description:"test"},
             ],
         }
     },
@@ -41,10 +41,5 @@ export default {
     width: 90%;
     margin-right: 20px;
     margin-left: 20px;
-}
-
-.mainContainer button {
-    padding: 10px;
-    background-color: white;
 }
 </style>
