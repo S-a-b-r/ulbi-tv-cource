@@ -2,15 +2,13 @@
     <form @submit.prevent>
         <h3>Создание поста</h3>
         <input 
-            :value="post.title"
-            @input="post.title = $event.target.value"
+            v-model="post.title"
             class="input" 
             type="text" 
             placeholder="Название"
         />
         <input 
-            :value="post.description"
-            @input="post.description = $event.target.value"
+            v-model="post.description"
             class="input" 
             type="text" 
             placeholder="Описание"
