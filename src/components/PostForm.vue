@@ -1,16 +1,12 @@
 <template>
     <form @submit.prevent>
         <h3>Создание поста</h3>
-        <input 
+        <MyInput 
             v-model="post.title"
-            class="input" 
-            type="text" 
             placeholder="Название"
         />
-        <input 
+        <MyInput 
             v-model="post.description"
-            class="input" 
-            type="text" 
             placeholder="Описание"
         />
         <MyButton @click="addPost">Добавить</MyButton>
@@ -46,14 +42,6 @@
 </script>
 
 <style scoped>
-    .input {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        padding: 1rem;
-        width: 100%;
-        border: 1px solid teal
-    }
-
     form {
         margin-top:10px;
         margin-bottom: 2rem;
