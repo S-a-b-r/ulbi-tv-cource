@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Список элементов</h3>
-        <PostItem v-for="post in posts" :key="post.id" :post="post"/>
+        <PostItem @remove="$emit('remove', post);" v-for="post in posts" :key="post.id" :post="post"/>
     </div>
 </template>
 
@@ -16,7 +16,7 @@
                 type: Array,
                 required: true,
             }
-        }
+        },
     }
 </script>
 

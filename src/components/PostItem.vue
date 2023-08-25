@@ -5,7 +5,7 @@
             <div><strong>Описание:</strong> {{ post.description }}</div>
         </div>
         <div class="post__btns">
-            <MyButton class="btn__delete">Удалить</MyButton>
+            <MyButton @click="$emit('remove', post);" class="btn__delete">Удалить</MyButton>
         </div>
     </div>
 </template>
@@ -16,6 +16,11 @@ export default {
         post: {
             type: Object,
             required: true
+        }
+    },
+    methods: {
+        deletePost() {
+            
         }
     }
 }
