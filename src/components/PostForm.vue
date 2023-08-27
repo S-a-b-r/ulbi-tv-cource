@@ -6,7 +6,7 @@
             placeholder="Название"
         />
         <MyInput 
-            v-model="post.description"
+            v-model="post.body"
             placeholder="Описание"
         />
         <MyButton @click="addPost">Добавить</MyButton>
@@ -19,7 +19,7 @@
             return {
                 post: {
                     title: '',
-                    description: '',
+                    body: '',
                 }
             }
         },
@@ -28,14 +28,14 @@
                 const newPost = {
                     id: Date.now(),
                     title: this.post.title,
-                    description: this.post.description,
+                    body: this.post.description,
                 }
 
                 this.$emit('createPost', newPost);
 
                 //Очищаем inputы
                 this.post.title = "";
-                this.post.description = "";
+                this.post.body = "";
             }
         }
     }
