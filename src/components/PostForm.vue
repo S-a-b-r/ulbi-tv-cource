@@ -28,7 +28,7 @@
                 const newPost = {
                     id: Date.now(),
                     title: this.post.title,
-                    body: this.post.description,
+                    body: this.post.body,
                 }
 
                 this.$emit('createPost', newPost);
