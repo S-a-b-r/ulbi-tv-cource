@@ -12,6 +12,9 @@
         </MyModal>
         <PostList v-if="isPostLoading != true" @remove="removePost" :posts="sortedAndSearchPosts" />
         <div v-else>Идет загрузка...</div>
+        <div class="page__wrapper">
+            <div @click="changePage(pageNumber)" v-for="pageNumber in totalPages" :key="pageNumber" class="page" :class="{'current-page' : page === pageNumber}">{{pageNumber}}</div>
+        </div>
     </div>
 </template>
 
@@ -26,10 +29,15 @@ export default {
     },
     data() {
         return {
-            posts: [],
+            posts: [
+                {title: "hello", body: "world"}
+            ],
             dialogVisible: false,
             isPostLoading: false,
             selectedSort: "",
+            page: 1,
+            limit: 10,
+            totalPages: 0,
             sortOptions: [
                 {value: 'title', name: 'По названию'},
                 {value: 'body', name: "По описанию"}
@@ -48,10 +56,19 @@ export default {
         setDialogVisible(isVisible) {
             this.dialogVisible = isVisible;
         },
+        changePage(pageNumber){
+            this.page=pageNumber;
+        },
         async fetchPosts() {
             try{
                 this.isPostLoading = true;
-                const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
+                const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
+                    params: {
+                        _page: this.page,
+                        _limit: this.limit,
+                    }
+                });
+                this.totalPages = Math.ceil(response.headers['x-total-count']/this.limit);
                 this.posts = response.data;
             } catch (e) {
                 alert('Ошибка')
@@ -70,7 +87,12 @@ export default {
             })
         },
         sortedAndSearchPosts() {
-            return this.sortedPosts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase));
+            return this.sortedPosts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()));
+        }
+    },
+    watch: {
+        page() {
+            this.fetchPosts();
         }
     }
 }
@@ -90,5 +112,20 @@ export default {
 .app__btns{
     display: flex;
     justify-content: space-between;
+}
+.page__wrapper{
+    display: flex;
+    margin-top:15px;
+}
+.page{
+    border: 1px solid black;
+    padding: 10px;
+    margin-right: 10px;
+}
+.page:hover{
+    cursor: pointer;
+}
+.current-page{
+    border: 1px solid greenyellow;
 }
 </style>
