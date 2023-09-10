@@ -1,5 +1,6 @@
 <template>
     <div class="mainContainer">
+        <NavbarComponent></NavbarComponent>
         <h1>Страница с постами</h1>
         <MyInput v-model="searchQuery" placeholder="Поиск..."></MyInput>
         <div class="app__btns"> 
@@ -17,14 +18,16 @@
 </template>
 
 <script>
+import NavbarComponent from "@/components/NavbarComponent.vue";
 import PostForm from "@/components/PostForm.vue";
 import PostList from "@/components/PostList.vue";
 import axios from 'axios';
 
 export default {
     components: {
-        PostForm, PostList
-    },
+    PostForm, PostList,
+    NavbarComponent
+},
     data() {
         return {
             posts: [
