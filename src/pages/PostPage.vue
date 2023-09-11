@@ -13,7 +13,7 @@
         </MyModal>
         <PostList v-if="isPostLoading != true" @remove="removePost" :posts="sortedAndSearchPosts" />
         <div v-else>Идет загрузка...</div>
-        <div ref="observer" class="observer"></div>
+        <div v-intersection="loadMorePosts" class="observer"></div>
     </div>
 </template>
 
@@ -74,17 +74,6 @@ export default {
     },
     mounted() {
         this.loadMorePosts();
-        const options = {
-            rootMargin: '0px',
-            threshold: 1.0,
-        }
-        const callback = (entries) => {
-            if(entries[0].isIntersecting && this.page < this.totalPages) {
-                this.loadMorePosts();
-            }
-        }
-        const observer = new IntersectionObserver(callback, options);
-        observer.observe(this.$refs.observer);
     },
     computed: {
         sortedPosts() {
