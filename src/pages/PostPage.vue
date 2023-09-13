@@ -2,7 +2,7 @@
     <div class="mainContainer">
         <NavbarComponent></NavbarComponent>
         <h1>Страница с постами</h1>
-        <MyInput v-model="searchQuery" placeholder="Поиск..."></MyInput>
+        <MyInput v-model="searchQuery" v-focus placeholder="Поиск..."></MyInput>
         <div class="app__btns"> 
             <MyButton @click="setDialogVisible(true)">Создать пост</MyButton>
             <MySelect v-model="selectedSort" :options="sortOptions"/>
