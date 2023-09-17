@@ -11,6 +11,9 @@
             <MyButton @click="$router.push('/about')">
                 О нас
             </MyButton>
+            <MyButton @click="$router.push('/store')">
+                Store
+            </MyButton>
         </div>
     </div>
 </template>
