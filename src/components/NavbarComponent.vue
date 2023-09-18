@@ -14,6 +14,9 @@
             <MyButton @click="$router.push('/store')">
                 Store
             </MyButton>
+            <MyButton @click="$router.push('/composition')">
+                CompositionApi
+            </MyButton>
         </div>
     </div>
 </template>
