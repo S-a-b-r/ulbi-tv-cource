@@ -4,10 +4,11 @@ export default function useSortedPosts(posts) {
     const selectedSort = ref('');
 
     const sortedPosts = computed(() => {
-        return [...posts].sort((post1, post2) => {
+        return posts.sort((post1, post2) => {
             return post1[selectedSort.value]?.localeCompare(post2[selectedSort.value]);
         })
     })
+
     
     return {sortedPosts, selectedSort}
 }

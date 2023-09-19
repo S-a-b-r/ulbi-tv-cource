@@ -1,8 +1,8 @@
 import axios from "axios";
-import {onMounted, ref} from 'vue';
+import {onMounted, reactive, ref} from 'vue';
 
 export default function usePosts(limit, page) {
-    const posts = ref([])
+    const posts = reactive([])
     const totalPages = ref(0)
     const isPostLoading = ref(true)
 
@@ -15,7 +15,7 @@ export default function usePosts(limit, page) {
                 }
             });
             totalPages.value = Math.ceil(response.headers['x-total-count']/limit);
-            posts.value.push(...response.data);
+            posts.push(...response.data);
         } catch (e) {
             alert('Ошибка')
         } finally {
