@@ -11,7 +11,7 @@
         <MyModal v-model:show="dialogVisible">
             <PostForm @createPost="addPost"/>
         </MyModal>
-        <PostList v-if="isPostLoading != true" :posts="sortedPosts" />
+        <PostList v-if="isPostLoading != true" :posts="sortedAndSearchedPosts" />
         <div v-else>Идет загрузка...</div>
         <!-- <div v-intersection="loadMorePosts" class="observer"></div> -->
     </div>
@@ -44,7 +44,6 @@ export default {
         const {sortedPosts, selectedSort} = useSortedPosts(posts);
         const {sortedAndSearchedPosts, searchQuery} = useSortedAndSearchedPosts(sortedPosts);
 
-        // console.log(sortedAndSearchedPosts)
         return {
             posts, totalPages, isPostLoading, selectedSort, sortedPosts, sortedAndSearchedPosts, searchQuery
         }
