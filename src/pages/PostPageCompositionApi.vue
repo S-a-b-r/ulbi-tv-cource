@@ -2,7 +2,7 @@
     <div class="mainContainer">
         <NavbarComponent></NavbarComponent>
         <h1>Страница с постами</h1>
-        <MyInput v-focus placeholder="Поиск..."></MyInput>
+        <MyInput v-model="searchQuery" v-focus placeholder="Поиск..."></MyInput>
         <div class="app__btns"> 
             <MyButton>Создать пост</MyButton>
             <MySelect v-model="selectedSort" :options="sortOptions"/>
@@ -11,7 +11,7 @@
         <MyModal v-model:show="dialogVisible">
             <PostForm @createPost="addPost"/>
         </MyModal>
-        <PostList v-if="isPostLoading != true" :posts="sortedPosts" />
+        <PostList v-if="isPostLoading != true" :posts="sortedAndSearchPosts" />
         <div v-else>Идет загрузка...</div>
         <!-- <div v-intersection="loadMorePosts" class="observer"></div> -->
     </div>
@@ -42,11 +42,11 @@ export default {
     setup() {
         const {posts, isPostLoading, totalPages} = usePosts(10, 1);
         const {sortedPosts, selectedSort} = useSortedPosts(posts);
-        const {sortedAndSearchedPosts, searchQuery} = useSortedAndSearchedPosts(sortedPosts);
+        const {sortedAndSearchPosts, searchQuery} = useSortedAndSearchedPosts(sortedPosts);
 
         // console.log(sortedAndSearchedPosts)
         return {
-            posts, totalPages, isPostLoading, selectedSort, sortedPosts, sortedAndSearchedPosts, searchQuery
+            posts, totalPages, isPostLoading, selectedSort, sortedPosts, sortedAndSearchPosts, searchQuery
         }
     }
 }
